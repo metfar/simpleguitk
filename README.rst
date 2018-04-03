@@ -10,6 +10,8 @@
 course "`An Introduction to Interactive Programming in Python
 <https://www.coursera.org/course/interactivepython>`_".
 
+**FORK** GUI disable option: just touch NOCTRL; disable debug executing touch NODBG; disable mouse with touch NOCURS .
+                                metfar@gmail.com
 
 This wrapper makes it easier to work in the development environment of your
 choice while still being able to quickly test your implementation without using

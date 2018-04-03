@@ -20,7 +20,7 @@ def draw(canvas):
 
 # Create a frame and assign callbacks to event handlers
 frame = simplegui.create_frame("Home", 300, 200)
-frame.add_button("Click me", click)
+#frame.add_button("Click me", click)
 frame.set_draw_handler(draw)
 
 # Start the frame animation

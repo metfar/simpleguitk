@@ -19,18 +19,18 @@ from version import __version__
 long_description = open(os.path.join(os.path.dirname(__file__),
                                      'README.rst')).read()
 
+#                        'pygame>=1.9.0'],
+
 setup(name='SimpleGUITk',
       packages=['simpleguitk',
                 'simpleplot'],
-      install_requires=['Pillow>=2.0.0',
-                        'pygame>=1.9.0'],
+      install_requires=['Pillow>=2.0.0'],
       version=__version__,
       description='A wrapper for the CodeSkulptor SimpleGUI API using TkInter',
-      author='David Holm',
-      author_email='dholmster@gmail.com',
-      url='http://github.com/dholm/simpleguitk/',
-      download_url=('https://github.com/dholm/simpleguitk/archive/v%s.zip' %
-                    __version__),
+      author='base:David Holm;fork:WM',
+      author_email='metfar@gmail.com',
+      url='http://github.com/metfar/simpleguitk/',
+      download_url=('https://codeload.github.com/metfar/simpleguitk/zip/master'), # %   __version__),
       license='BSD',
       classifiers=[
           'Development Status :: 5 - Production/Stable',

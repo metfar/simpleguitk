@@ -1,0 +1,43 @@
+#!/bin/bash
+n=$((1+`whereis cython|cut -d: -f2-|wc -c`))
+if [ $n -lt 6 ]; then
+	echo
+        echo $NOM:  Dependency error! 
+	echo
+	echo "             "cython package required
+	echo
+        echo "                                  "greets, metfar@gmail.com
+        exit
+fi
+ 
+argv=($0 "$@")
+argc=$((0+$#))
+argall=""
+NOM="`echo $0|rev|cut -f1 -d\/ |rev`"
+
+if [ $argc -lt 1 ]; then
+        echo
+        echo $NOM: usage 
+        echo
+        echo "             "$NOM pythonFileToBeCompiled.py 
+	echo
+	echo " WARNING: One argument is mandatory"
+        echo 
+        echo "                                  "greets, metfar@gmail.com
+        exit
+fi
+	
+if [ "0$1" = "0--help" ]; then
+        echo
+        echo $NOM: usage 
+        echo
+        echo "             "$NOM python.py 
+        echo
+        echo "                                  "greets, metfar@gmail.com
+        exit
+fi
+
+ARGU="`echo $1|rev|cut -f2- -d\. |rev`"
+
+echo Compiling $ARGU
+env cython --embed $1 && env gcc $CFLAGS -I /usr/include/python2.7 ${ARGU}.c -lpython2.7 -lpthread -lm -lutil -ldl -o ${ARGU}.run
