@@ -3,7 +3,7 @@
 # See the file 'COPYING' for copying permission.
 
 from __future__ import division
-
+import os.path;#w:ok
 try:
     import Tkinter as tkinter
 except ImportError:
@@ -38,14 +38,16 @@ KEY_MAP = KeyMap()
 
 class InputAdapter(object):
     def _status_frame_init(self, status_frame):
-        key_frame = tkinter.LabelFrame(status_frame, text='Key')
-        self._key_label = Label(key_frame, '')
+        key_frame = tkinter.LabelFrame(status_frame, text='Key');
+        self._key_label = Label(key_frame, '');
 
-        mouse_frame = tkinter.LabelFrame(status_frame, text='Mouse')
-        self._mouse_label = Label(mouse_frame, '')
-
-        key_frame.pack(fill=tkinter.BOTH)
-        mouse_frame.pack(fill=tkinter.BOTH)
+        mouse_frame = tkinter.LabelFrame(status_frame, text='Mouse');
+        self._mouse_label = Label(mouse_frame, '');
+	#w:ok ini
+	if (not os.path.isfile("./NODBG")):
+		key_frame.pack(fill=tkinter.BOTH);
+        	mouse_frame.pack(fill=tkinter.BOTH);
+	#w:ok end
 
     def __init__(self, status_frame, key_master, mouse_master):
         self._key_label = None

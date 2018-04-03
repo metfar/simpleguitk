@@ -17,10 +17,9 @@ class Sound(object):
         self._channel = None
         if url.startswith('http'):
             soundfile = urlopen(url).read()
-            stream = io.BytesIO(soundfile).read()
-            self._sound = pygame.mixer.Sound(stream)
         else:
-            self._sound = pygame.mixer.Sound(url)
+            soundfile = open(url).read()
+        self._sound = pygame.mixer.Sound(io.BytesIO(soundfile))
         self._paused = False
 
     def play(self):

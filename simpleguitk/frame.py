@@ -10,6 +10,8 @@ except ImportError:
     import tkinter
 
 import sys
+import os.path;#w:ok
+
 
 from .canvas import Canvas
 from .control_objects import Button
@@ -21,24 +23,30 @@ from .timers import destroy as destroy_timers
 
 class Frame(object):
     def _create_root(self, title):
-        root = tkinter.Tk()
-        root.wm_title(title)
-        root.protocol('WM_DELETE_WINDOW', root.quit)
-        return root
+        root = tkinter.Tk();
+        root.wm_title(title);
+        root.protocol('WM_DELETE_WINDOW', root.quit);
+	#w:ok ini
+        #if (os.path.isfile("./NODECO") or os.path.isfile("/opt/NODECO")):
+	#root.overrideredirect(True);
+
+	#if (os.path.isfile("./NOCURS") or os.path.isfile("/opt/NOCURS") ):
+	root.config(cursor="none");
+	#w:ok end
+        return root;
 
     def _canvas_init(self, width, height):
         canvas_frame = tkinter.Frame(self._root)
         self._canvas = Canvas(canvas_frame, width, height)
-        canvas_frame.grid(row=0, column=1, rowspan=2, padx=5, pady=5,
-                          sticky=(tkinter.N, tkinter.S, tkinter.W, tkinter.E))
+        canvas_frame.grid(row=0, column=1, rowspan=2, padx=5, pady=5);#,
+        #                  sticky=(tkinter.N, tkinter.S, tkinter.W, tkinter.E))
 
     def _control_frame_init(self, width):
-        self._control_frame = tkinter.Frame(self._root, width=width)
+        self._control_frame = tkinter.Frame(self._root, width=width,cursor=None)
         self._control_frame.grid(row=0, column=0, padx=5, pady=5)
 
     def _input_init(self):
-        status_frame = tkinter.Frame(self._root, width=120, height=85)
-        status_frame.pack_propagate(0)
+        status_frame = tkinter.Frame(self._root)
         canvas_widget = self._canvas._get_widget()
         self._input = InputAdapter(status_frame, self._root, canvas_widget)
         status_frame.grid(row=1, column=0, sticky=(tkinter.W, tkinter.E),
@@ -112,4 +120,10 @@ class Frame(object):
 
 
 def create_frame(title, canvas_width, canvas_height, control_width=200):
-    return Frame(title, canvas_width, canvas_height, control_width)
+    #w:ok ini
+    ctrWidth=control_width;
+    if (os.path.isfile("./NOCTRL")):
+                ctrWidth=0;#root.config(cursor="none");
+    #w:ok end
+    return Frame(title, canvas_width, canvas_height, ctrWidth);
+    #w:ok end

@@ -93,9 +93,11 @@ class Canvas(object):
         self._canvas.create_oval(points, outline=map_color(line_color),
                                  fill=map_color(fill_color), width=line_width)
 
-    def draw_point(self, point, color):
-        self._canvas.create_line([point[0], point[1], point[0] + 1, point[1]],
-                                 fill=map_color(color))
+    def draw_oval(self, points, line_width, line_color,
+                    fill_color=None):
+        self._canvas.create_oval(points, outline=map_color(line_color),
+                                 fill=map_color(fill_color), width=line_width)
+
 
     def draw_image(self, image, center_source, width_height_source,
                    center_dest, width_height_dest, rotation=0):
